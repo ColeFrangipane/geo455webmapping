@@ -1,0 +1,40 @@
+/* GEO 455 - Lab 1 styles */
+
+/* Global page styles */
+body {
+  font-family: system-ui, Arial, sans-serif;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Page layout: keep content centered with a max width */
+header,
+main,
+footer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* Navigation spacing */
+nav a {
+  margin-right: 12px;
+}
+
+/* “Hero” section styling */
+.hero {
+  background: #f3f3f3;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+/* Utility class */
+.center {
+  text-align: center;
+}
+
+/* Responsive images */
+img {
+  max-width: 100%;
+  height: auto;
+}
