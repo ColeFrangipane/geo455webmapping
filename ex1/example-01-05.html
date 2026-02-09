@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Input elements</title>
+        <style>
+            .column {
+                float: left;
+                width: 33.33%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="column">
+    
+            <h3>Text input</h3>
+            First name:<input type="text" name="firstname"><br>
+            Last name:<input type="text" name="lastname">
+            
+            
+            <h3>Numeric input</h3>
+            Age <br>
+            <input type="number" name="num" value="35" min="0" max="100">
+
+            <h3>Range input</h3>
+            Time period of my undergrad degree is 
+            <input type="range" name="points" value="5" min="0" max="100"><br>
+            I need to learn more to make a fancy slider<br>
+        </div>
+        
+        <div class="column">
+
+            <h3>Text area</h3>
+            <textarea>My favorite food is ..</textarea>
+
+            <h3>Radio Buttons</h3>
+            <input type="radio" name="fav_season" value="winter" checked> Winter<br>
+            <input type="radio" name="fav_season" value="spring"> Spring<br>
+            <input type="radio" name="fav_season" value="summer"> Summer<br>
+            <input type="radio" name="fav_season" value="fall"> Fall<br>
+
+            <h3>Check boxes</h3>
+            <input type="checkbox" name="vehicle1" value="Bike">
+                I have a bike<br>
+            <input type="checkbox" name="vehicle2" value="Car">
+                I have a car<br>
+            <input type="checkbox" name="vehicle3" value="Walk">
+                I prefer to walk<br>
+            <input type="checkbox" name="vehicle3" value="Bus">
+                I prefer to take the bus<br>
+
+        </div>
+        <div class="column">
+
+            <h3>Dropdown list</h3>
+            <select name="cars">
+                <option value="tesla">Tesla</option>
+                <option value="mercedes">Mercedes</option>
+                <option value="bmw">BMW</option>
+                <option value="audi">Audi</option>
+            </select>
+
+            <h3>Buttons</h3>
+            <input type="button" value="Click Me but I dont do anything!">      
+            <p><a href=geo455_ex1.html>Back To Main Excercise 1 Page</a></p>
+
+        </div>
+    </body>
+</html>
+
