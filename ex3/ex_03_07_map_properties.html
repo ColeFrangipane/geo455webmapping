@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Leaflet Objects + Properties Example</title>
+
+  <!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+
+  <style>
+    #map { height: 70vh; border-radius: 12px; }
+    body { font-family: system-ui, Arial, sans-serif; margin: 16px; }
+  </style>
+</head>
+<body>
+  <h2>Leaflet: Objects have properties + methods</h2>
+  <div id="map"></div>
+
+  <!-- Leaflet JS -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
+
+  <script>
+    // 1) Create a Leaflet MAP object (it has properties + methods)
+const mymap = L.map("map").setView([43.81, -91.25], 12); // setView() is a method
+
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19,
+    attribution: "&copy; OpenStreetMap contributors"
+  }).addTo(mymap);
+
+  // method: creates a Leaflet marker using this object's properties
+  // One shared "method" reused by BOTH objects
+  function addPlaceMarker() {
+    const marker = L.marker(this.coords).addTo(mymap);
+    marker.bindPopup(
+      `<b>${this.name}</b><br>
+       Type: ${this.type}<br>
+       Est. population: ${this.popEstimate.toLocaleString()}`
+    );
+    return marker;
+  }
+// 2) Create your own JS objects with properties + methods
+  const places = [
+    {
+      name: "Downtown",
+      coords: [43.812, -91.252], // property
+      type: "Neighborhood", //property
+      popEstimate: 8500,// property
+      addToMap: addPlaceMarker
+    },
+    {
+      name: "Campus",
+      coords: [43.815, -91.233],
+      type: "University",
+      popEstimate: 10500,
+      addToMap: addPlaceMarker
+    },
+    {
+      name: "Granddad Bluff",
+      coords: [43.8126, -91.2089],
+      type: "University",
+      addToMap: addPlaceMarker
+    }  
+  ];
+
+// 3) Use the objects: call their methods
+    const layerGroup = L.layerGroup(); // Leaflet object with methods like addLayer()
+    places.forEach(place => layerGroup.addLayer(place.addToMap(map)));
+
+    // Add the group + zoom to it
+    layerGroup.addTo(map);
+    map.fitBounds(layerGroup.getBounds().pad(0.2)); // fitBounds() and getBounds() are methods
+  </script>
+    <p><a href=geo455_ex3.html>Back To Main Excercise 3 Page</a></p>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <title>ex3-01</title>
+    </head>
+<body>
+
+    <h2>Assigning JavaScript Values</h2>
+
+    <p>In JavaScript the = operator is used to assign values to variables.</p>
+
+    <p id="add"></p>
+    <p id="add1"></p>
+    <p id="sub"></p>
+    <p id="mult1"></p>
+    <p id="mult2"></p>
+    <p id="incree"></p>
+    <p id="decree"></p>
+    <p id="concata"></p>
+    <p id="list"></p>
+    <p id ="list1"></p>
+    <p id="bool"></p>
+
+    <script> //javascript starts here //
+        var f = 94
+        var x = 07;
+        var y = 4;
+        document.getElementById("add").innerHTML = x + x + f; //"add" id will return the calculation from script to the html document where "add" is used within <p> tag
+        document.getElementById("sub").innerHTML = y - y;
+        document.getElementById("mult1").innerHTML = x * y;
+        document.getElementById("mult2").innerHTML = x * 10;
+        document.getElementById("add1").innerHTML = x + 12;
+        
+        
+        var z = 11
+        z++;
+        document.getElementById("incree").innerHTML = z;
+        
+        z--;
+        document.getElementById("decree").innerHTML = z;
+
+        var s1 = "John";
+        var s2 = "David";
+        var s3 = "Smith";
+        document.getElementById("concata").innerHTML = s1 +" " + s2 + " " + s3;
+
+        var list = "<ul>";
+        list += "<li>Apples</li>";
+        list += "<li>Oranges</li>";
+        list += "<li>Milk</li>";
+        list += "<li>Eggs</li>"
+        list += "<li>Bread</li>"
+        list += "</ul>";
+        
+        var val1= 16;
+        var val2 = 9;
+        
+        document.getElementById("list").innerHTML = list; // returns all values in the list
+        document.getElementById("bool").innerHTML = val1 > val2;
+    </script>
+    <p><a href=geo455_ex3.html>Back To Main Excercise 3 Page</a></p>
+</body>
+</html>

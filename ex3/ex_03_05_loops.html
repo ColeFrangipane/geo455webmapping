@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <title>ex3-05</title>
+    </head>
+<body>
+
+<h2>JavaScript For Loop</h2>
+
+<p id="demo"></p>
+<p id="demo1"></p>
+<p id="demo2"></p>
+
+<script>
+    var num = "";
+    
+    for (var i = 3; i < 40; i++) { // change to a different number
+        num += "The number is " + i + "<br>";
+    }
+    document.getElementById("demo").innerHTML = num;
+    
+    var num_brk = "";
+    
+    for (var z = 4; z < 15; z++) {
+        if(z===13) {break;}
+        num_brk += "The number is " + z + " lets loop again" + "<br>";
+    }
+    document.getElementById("demo1").innerHTML = num_brk;
+    
+    
+    var cars = ["Tesla", "Volvo", "BMW", "Ford", "Fiat", "Audi"];
+    
+    var carnames = "";
+    
+    for (var j = 0; j < cars.length; j++) {
+        carnames += cars[j] + "<br>";
+    }
+    document.getElementById("demo2").innerHTML = carnames;
+
+</script>
+
+<p><a href=geo455_ex3.html>Back To Main Excercise 3 Page</a></p>
+</body>
+</html>

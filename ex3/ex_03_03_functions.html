@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <title>ex3-03</title>
+    </head>
+<body>
+
+    <h2>JavaScript Functions</h2>
+
+    <p id="multiply"></p>
+    <p id="greet"></p>
+    <p id="greet2"></p>
+    <p id="f2c"></p>
+    <p id="method"></p>
+    <p id="method1"></p>
+    <p id="len1"></p>
+    <p id="len2"></p>
+    <p id="pop_method"></p>
+    <p id="push_method"></p>
+
+
+
+    <script>
+        
+        function multiply(p1, p2) {
+            return p1 * p2;
+        };
+        
+        document.getElementById("multiply").innerHTML = "This is result of multiply function: "+ multiply(420, 67);
+        // change the parameters and check ..
+        
+        // create a function to return square root of a number ..
+        
+
+        
+        function greeting() {
+            return ("Hello!");
+        };
+        
+        document.getElementById("greet").innerHTML = "What do I say when I greet someone: "+ greeting();
+        
+        function greeting2() {
+            return ("GOODBYE!!!")
+        };
+        
+        document.getElementById("greet2").innerHTML = "What do I say when I am leaving: "+ greeting2();
+        
+        
+        
+        function to_Celsius(f) {
+            return (5/9) * (f-32);
+        };
+        
+        document.getElementById("f2c").innerHTML = "Today's temperature in Celsius is: " + to_Celsius(30)+" C";
+        
+        
+        
+        var person = {
+            firstName: "Cole",
+            lastName: "Carlos",
+            age: 22,
+            eyeColor: "brown",
+            fullName: function() {return this.firstName + " " + this.lastName;}
+        };
+        document.getElementById("method").innerHTML = person.fullName();
+        document.getElementById("method1").innerHTML = person.fullName().toUpperCase() + " loved to play video games.";
+        
+        
+        var a = [1, 7, 15, 16, 7, [3, 4]];
+        document.getElementById("len1").innerHTML = "The length of the variable is: " + a.length;
+        document.getElementById("len2").innerHTML = "The length of the 5th element is: " + a[5].length;  
+        
+        
+        var midwest = ["Wisconsin", "New York", "Stoughton", "Illinois", "California"];
+        midwest.pop();
+        document.getElementById("pop_method").innerHTML = midwest; //removes the last element
+        midwest.push("Michigan");
+        document.getElementById("push_method").innerHTML = midwest;// adds michigan at the end
+        
+
+
+    
+
+    </script>
+<p><a href=geo455_ex3.html>Back To Main Excercise 3 Page</a></p>
+</body>
+</html>
