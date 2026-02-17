@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Event object</title>
+    </head>
+    <body>
+        <p> These are your x and y coordinates</p>
+        <p id="position"></p>
+        <script>
+            var page_coord = document.getElementById("position");
+            document.addEventListener("mousemove", function(e) {
+                page_coord.innerHTML = e.pageX + " " + e.pageY;
+            });
+        </script>
+    </body>
+     <p><a href=geo455_ex4.html>Back To Main Excercise 4 Page</a></p>
+</html>

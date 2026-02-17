@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Populating list</title>
+    </head>
+    <body>
+        <p>The Great Lakes and St. Lawrence Governors and Premiers have identified the <it>“least wanted” aquatic invasive species (AIS)</it> that present an imminent threat to the Great Lakes-St. Lawrence River region. Here is the list:</p>
+        
+        <ul id="species"></ul> //convert to ordered list
+        
+        <p>It was created dynamically using JavaScript.</p>
+        <script>
+            var data = ["Bighead carp", "Silver carp", "Grass carp", "Black Carp", "Northern snakehead", "Stone moroko", "Zander", "Wels catfish", "Tench", "Killer shrimp", "Yabby (crayfish)", "Golden mussel", "New Zealand mud snail", "Hydrilla", "Brazilian elodea", "Water soldier", "Marmorkreb (marbled crayfish)", "European water chestnut", "Parrot feather", "European frogbit", "Yellow floating heart" ];
+            var html = "";
+            data.forEach(function(element) {
+                html += "<li><i>" + element + "</i></li>";
+            });
+            document.getElementById("species").innerHTML = html;
+        </script>
+    </body>
+     <p><a href=geo455_ex4.html>Back To Main Excercise 4 Page</a></p>
+</html>

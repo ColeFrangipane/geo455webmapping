@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Working with user input</title>
+    </head>
+    <body>
+        <p>First number: <input type="number" id="num1" min="0" max="100" value=""></p>
+        <p>Second number: <input type="number" id="num2" min="0" max="100" value=""></p>
+        
+        <input type="button" id="multiply" value="Multiply!">
+        <input type="button" id="divide" value="Divide!">
+        <input type="button" id="add" value="Add!">
+        <input type="button" id="clear" value="Clear History!">
+        <!-- add more math functions --->
+        <p id="result"></p>
+        
+        <script>
+            var num1 = document.getElementById("num1");
+            var num2 = document.getElementById("num2");
+            var result = document.getElementById("result");
+            
+            document.getElementById("multiply").addEventListener("click", function() {
+                result.innerHTML +="<p>" + num1.value + " * " + num2.value + 
+                    " = " + num1.value * num2.value + "</p>";});
+            
+            document.getElementById("divide").addEventListener("click", function() {
+                result.innerHTML +="<p>" + num1.value + " / " + num2.value + 
+                    " = " + num1.value / num2.value + "</p>";});
+            
+            document.getElementById("add").addEventListener("click", function(){
+                result.innerHTML +="<p>" + num1.value + " + " + num2.value +
+                    " = " + num1.value + num2.value + "</p>";});
+            
+            document.getElementById("clear").addEventListener("click", function() {
+                result.innerHTML ="";});
+            
+        </script>
+    </body>
+     <p><a href=geo455_ex4.html>Back To Main Excercise 4 Page</a></p>
+</html>

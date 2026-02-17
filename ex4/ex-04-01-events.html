@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>JavaScript HTML Events</h2>
+    
+    
+    <h3>What can JavaScript do?</h3>
+    <button id="myBtn1">Click me!!</button>
+    <p id="demo1"></p>
+    
+    
+    
+    <h3>What's the date today?</h3>
+    <button id="myBtn2">Display current date/time</button>
+    <p id="demo2"></p>
+    
+    <h3 onmouseover="style.color='orange'" onmouseout="style.color='blue'">
+        Mouse over this text</h3>
+
+    
+    <h3>This example uses the addEventListener() 
+        method to add many events on the same button.</h3>
+    <button id="myBtn3">Try it!!</button>
+    <p id="demo3"></p>
+    
+    <h3> My new button</h3>
+    <button id="myBtn4">Try it!!!!!!!!!!!!!!</button>
+    <p id="demo4"></p>
+
+
+
+<script>
+    
+    document.getElementById("myBtn1").addEventListener("click", hello);
+    
+    function hello() {
+        document.getElementById("demo1").innerHTML = 
+            "JavaScript can change page contents and is also very confusing!";
+            }
+
+    
+    
+    document.getElementById("myBtn2").addEventListener("click", displayDate);
+
+    function displayDate() {
+        document.getElementById("demo2").innerHTML = Date();
+    }
+    
+    
+    var x = document.getElementById("myBtn3");
+    x.addEventListener("mouseover", myFunction);
+    x.addEventListener("click", mySecondFunction);
+    x.addEventListener("mouseout", myThirdFunction);
+    
+    
+    function myFunction(){
+        document.getElementById("demo3").innerHTML += "Hello!<br>";
+    }
+    
+    function mySecondFunction() {
+        document.getElementById("demo3").innerHTML += "Clicked!<br>";
+    }
+    
+    function myThirdFunction() {
+        document.getElementById("demo3").innerHTML += "Goodbye!<br>";
+    }
+    
+    document.getElementById("myBtn4").addEventListener("click", displayDate);
+    
+    function displayDate() {
+        document.getElementById("demo4").innerHTML = Date();
+    }
+    
+</script>
+    <p><a href=geo455_ex4.html>Back To Main Excercise 4 Page</a></p>
+
+</body>
+</html> 
