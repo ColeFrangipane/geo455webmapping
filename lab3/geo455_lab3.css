@@ -18,17 +18,17 @@ body {
 #title {
   position: fixed;
   top: 15px;
-  left: 50%;
-  transform: translateX(-50%);  /* Centers it */
-  width: 80%;                   /* Slightly narrower than full width */
-  max-width: 1200px;            /* Optional: prevents it getting too wide */
+  left: 300px;
+  right: 300px;
+  
+  
   
   text-align: center;
   font-size: 2em;
   font-family: "Lora", serif;
   letter-spacing: .04em;
   margin: 20px auto;
-  padding: 15px 20px;
+  padding: 8px;
 
   background: rgba(255, 255, 255, 0.85);
   border: 1px solid #777;
@@ -39,21 +39,15 @@ body {
 }
 #description {
   position: fixed;
-  
-  /* 1. Push to the center */
-  left: 50%;
-  
-  /* 2. Pull it back to the left by exactly half of the Header's max-width */
-  /* This ensures it starts exactly where the 'Lab 3' box starts */
-  margin-left: -600px; 
-
-  bottom: 80px;
-  width: 320px;
-  padding: 15px;
+  top: 290px;
+  left: 300px;
+  width: 300px;
+  padding: 2px 15px;
   background: rgba(255, 255, 255, 0.75);
   border: 1px solid #777;
   border-radius: 6px;
   z-index: 800;
+  overflow-y:auto
 }
 
 /* 3. Safety net: If the screen is smaller than 1200px, fall back to 10% */
@@ -80,16 +74,13 @@ body {
 
 #footer {
   position: fixed;
-  bottom: 15px;          /* Space from bottom */
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  max-width: 1200px;
-
+  bottom: 10px;         
+  left: 300px;
+  right: 300px;
   text-align: center;
   font-size: 0.9em;
   font-family: "Lora", serif;
-  padding: 10px 15px;
+  padding: 8px;
 
   background: rgba(255, 255, 255, 0.85);
   border: 1px solid #777;
