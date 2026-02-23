@@ -37,18 +37,31 @@ body {
   
   z-index: 800;
 }
-/*Style the description panel (overlay box)*/
 #description {
   position: fixed;
-  left: 340px;
-  bottom: 60px;
+  
+  /* 1. Push to the center */
+  left: 50%;
+  
+  /* 2. Pull it back to the left by exactly half of the Header's max-width */
+  /* This ensures it starts exactly where the 'Lab 3' box starts */
+  margin-left: -600px; 
+
+  bottom: 80px;
   width: 320px;
-  max-width: calc(100vw - 20px);
-  padding: 0 15px;
+  padding: 15px;
   background: rgba(255, 255, 255, 0.75);
   border: 1px solid #777;
   border-radius: 6px;
   z-index: 800;
+}
+
+/* 3. Safety net: If the screen is smaller than 1200px, fall back to 10% */
+@media (max-width: 1250px) {
+  #description {
+    left: 10%;
+    margin-left: 0;
+  }
 }
 /*Make paragraph text inside the description readable */
 #description p {
