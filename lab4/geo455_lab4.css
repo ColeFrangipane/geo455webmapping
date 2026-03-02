@@ -1,0 +1,97 @@
+/* Page + full-screen map - Make the page tall enough for a full-screen map*/
+html, body {
+  height: 100%;
+}
+/* Basic styling for the whole page */
+body {
+  margin: 0;
+  background-color: whitesmoke;
+  font-family: "Noto Sans", sans-serif;
+  color: #3d3d3d;
+}
+/* Make the map fill the entire browser window */
+#map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+/*Style the title panel (overlay box)*/
+#title {
+  position: fixed;
+  top: 15px;
+  left: 300px;
+  right: 300px;
+
+  text-align: center;
+  font-size: 2em;
+  font-family: "Lora", serif;
+  letter-spacing: .04em;
+  margin: 20px auto;
+  padding: 8px;
+
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid #777;
+  border-radius: 12px;          /* Rounded corners */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);  /* Soft shadow */
+  
+  z-index: 800;
+}
+
+  .custom.leaflet-popup-tip,
+  .custom.leaflet-popup-content-wrapper {
+    background: #000000;
+    color: #ffffff;}
+
+#description {
+  position: fixed;
+  top: 35px;
+  bottom: 20px;
+  left: 50px;
+  width: 200px;
+  padding: 2px 15px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid grey;
+  border-radius: 6px;
+  z-index: 800;
+}
+
+/* 3. Safety net: If the screen is smaller than 1200px, fall back to 10% */
+@media (max-width: 1250px) {
+  #description {
+    left: 10%;
+    margin-left: 0;
+  }
+}
+/*Make paragraph text inside the description readable */
+#description p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+/*Style links inside the description (and hover effect)*/
+#description a {
+  color: #005daa;
+  text-decoration: none;
+}
+
+#description a:hover {
+  text-decoration: underline;
+}
+
+#footer {
+  position: fixed;
+  bottom: 20px;         
+  left: 300px;
+  right: 300px;
+  text-align: center;
+  font-size: 0.9em;
+  font-family: "Lora", serif;
+  padding: 8px;
+
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid #777;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+
+  z-index: 800;
+}

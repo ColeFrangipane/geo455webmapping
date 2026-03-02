@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GEO 455: Lab 4</title>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  
+  <!-- Make sure you put the leaflet map library AFTER Leaflet's CSS --> 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+   
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
+   <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+  
+  <!--Your choice of Google fonts- make sure to update in CSS file -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+
+  <!-- Your CSS -->
+  <link rel="stylesheet" href="geo455_lab4.css" />
+</head>
+  <body>
+  <div id="map"></div>
+
+  <h1 id="title">Lab 4: Seven Wonders</h1>
+
+  <div id="description">
+    <h2>About this map</h2>
+    <p>In this assignment, we are working with layer controls. We have three layers, landmarks, basemap, and SRTM 30m hillshade map using WMS service. Landmarks are based on encyclopedia Britannica's entry on <a href="https://www.britannica.com/list/new-seven-wonders-of-the-world">New Seven Wonders of the World</a> and the images are linked from Wikipedia Common images</p> 
+     
+    
+
+  </div>
+    <!-- Your map code  -->
+  <script src="geo455_lab4.js"></script>
+     <div id="footer">
+  Cole Frangipane | <small><a href="../index.html">Back to main page</a></small> | Data: OpenStreetView
+</div>
+</body>
+  
+</html>

@@ -1,0 +1,27 @@
+1. Great Wall of China, 40.4505, 116.5490, Image Link: https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/20090529_Great_Wall_8185.jpg/256px-20090529_Great_Wall_8185.jpg; 
+
+2. Chichen-Itza, 20.6793, -88.5682, Image Link: https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/003_El_Castillo_o_templo_de_Kukulkan._Chich%C3%A9n_Itz%C3%A1%2C_M%C3%A9xico._MPLC.jpg/256px-003_El_Castillo_o_templo_de_Kukulkan._Chich%C3%A9n_Itz%C3%A1%2C_M%C3%A9xico._MPLC.jpg;
+
+3. Petra, 30.3287, 35.4444, Image Link:https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/The_Monastery%2C_Petra%2C_Jordan8.jpg/256px-The_Monastery%2C_Petra%2C_Jordan8.jpg;
+
+4. Machu Pichu, -13.1629, -72.5450, Image Link: https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Machu_Picchu%2C_Peru.jpg/256px-Machu_Picchu%2C_Peru.jpg;
+
+5. Christ the Redeemer, -22.9517, -43.2104, Image Link: https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Aerial_view_of_the_Statue_of_Christ_the_Redeemer.jpg/256px-Aerial_view_of_the_Statue_of_Christ_the_Redeemer.jpg;
+
+6. Colosseum, 41.8904, 12.4922, Image Link: https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Colosseum_in_Rome-April_2007-1-_copie_2B.jpg/256px-Colosseum_in_Rome-April_2007-1-_copie_2B.jpg;
+
+7. Taj Mahal, 27.1753, 78.0421, Image Link: https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Taj-Mahal.jpg/256px-Taj-Mahal.jpg;
+
+greatWallLineCoords = [
+  [40.45058574410227, 116.54903113946699],
+  [40.44940804004364, 116.55324919831969],
+  [40.44714494004076, 116.55510028845048],
+  [40.44545911200895, 116.55455406535388],
+  [40.44428131665059, 116.55637480900924],
+  [40.44060923386488, 116.56019837128976],
+  [40.43557422832096, 116.56189773235194],
+  [40.431023921892326, 116.56441642808237],
+  [40.43005690361108, 116.56583967643232],
+  [40.42912280914733, 116.56815090383526],
+  [40.42817101495977, 116.56756399877838]
+];
