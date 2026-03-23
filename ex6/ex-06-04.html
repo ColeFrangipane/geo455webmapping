@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EONET real-time events</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js" integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==" crossorigin=""></script>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        html, body, #map {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script>
+let map = L.map("map").setView([0, 0], 2);
+
+L.tileLayer(
+    "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", 
+    {attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'}
+).addTo(map);
+
+// Add EONET events
+fetch("https://eonet.gsfc.nasa.gov/api/v3/events")
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(data) {
+        // Iteration over 'events'
+        data.events.forEach(function(element1) {
+                // Iteration over 'geometries' per 'event'
+                element1.geometry.forEach(function(element2) {
+                    L.geoJSON(element2, {
+                        pointToLayer: function(geojson_point, latlng) {
+                            return L.circleMarker(latlng);
+                        }
+                    })
+                        .bindPopup(element1.title + '<br>' + element2.date)
+                        .addTo(map);
+                });
+        });
+    });
+        L.control.scale().addTo(map);       
+        
+// custom earthquake icon
+let earthquakeIcon = L.icon({
+    iconUrl: "https://upload.wikimedia.org/wikipedia/commons/5/5f/Map_marker_icon_%E2%80%93_Nicolas_Mollet_%E2%80%93_Earthquake_%E2%80%93_Events_%E2%80%93_Classic.png",
+    iconSize: [32, 37],
+    iconAnchor: [16, 37],
+    popupAnchor: [0, -30]
+});       
+    </script>
+    <p><a href=geo455_ex6.html>Back To Main Excercise 6 Page</a></p>
+</body>
+</html>
