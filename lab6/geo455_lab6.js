@@ -98,7 +98,7 @@ function onEachDensityFeature(feature, layer) {
 function onEachLanguageFeature(feature, layer) {
   layer.bindPopup(
     '<strong>' + feature.properties.name + '</strong><br>' + 
-    '<span style="color:blue">' + feature.properties.no_eng_den.toFixed(2) + ' non-English speakers/hectare</span>'
+    '<span style="color:red">' + feature.properties.no_eng_den.toFixed(2) + ' non-English speakers/hectare</span>'
   );
   
   layer.on({
