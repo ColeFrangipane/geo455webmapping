@@ -1,0 +1,54 @@
+<html>
+   <head>
+      <title>Ex-7-3: Fade CSS manipulation</title>
+
+    </head>
+      <script 
+        src="https://code.jquery.com/jquery-4.0.0.min.js" 
+        integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" 
+        crossorigin="anonymous">
+      </script>
+             <style>
+           .charac {
+               float: left;
+           }
+           img {
+              width: 200px; 
+               height: 200px; 
+           }
+      </style>
+
+      <script>
+          /*try this below*/
+       /*$(document).ready(function() {
+              $("img").click(function(){
+                  $(this).hide();
+              });
+          }); */
+          
+          $(document).ready(function() {
+              $("#button-1").click(function(){
+                  $("#normal").fadeToggle();
+                  $("#fast").fadeToggle("fast");
+                  $("#slow").fadeToggle("slow");
+                  $("#very-slow").fadeToggle(2);
+              });
+          });
+          
+
+      </script>
+
+	
+   <body>
+       <h1> Adventures of Tintin </h1>
+       <p> Main Characters </p>
+       <div class= "charac">
+           <img id="normal" src="img/tintin-milou.jpg"> <br>
+           <img id="fast" src="img/captain-haddock_v2.jpg"> <br>
+           <img id="slow" src="img/prof_calcu.jpg"> <br>
+           <img id="very-slow" src="img/Thomson_&_Thompson.png"> <br>
+       </div>
+       
+       <button id="button-1">Fade Toggle</button>
+   </body>
+</html>

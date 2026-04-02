@@ -1,0 +1,44 @@
+<html>
+   <head>
+      <title>Ex-7-1: DOM manipulation</title>
+      <script 
+      src="https://code.jquery.com/jquery-4.0.0.min.js" 
+      integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" 
+      crossorigin="anonymous">
+      </script>
+
+      <script>
+        // create a reusable design variable to change the css of the element with id test
+         var design = {
+              color: "purple",
+              background: "orange",
+              border: "3px solid purple"
+          }
+          // use the ready function to manipulate the DOM when the document is ready
+        $(document).ready(function() {
+            $("p:first").css('background-color', 'green');
+            $("button").click(function(){
+                $("ul").css('color', 'blue');
+                $("#test").css(design);
+            });
+         });
+
+         //try creating a new variable and use it in a function to change the text of the list items and call it when the button is clicked
+      </script>
+   </head>
+	
+   <body>
+       <h1> Webmapping </h1>
+       <p> Technologies we learned </p>
+       <ul>
+           <li> HTML </li>
+           <li> CSS </li>
+           <li> JavaScript </li>
+           <li> jQuery </li>
+       </ul>
+
+
+       <p id="test">Check console to get the text for list</p> 
+       <button>Change list text color</button>
+    </body>
+</html>

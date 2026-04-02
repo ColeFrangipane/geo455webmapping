@@ -1,0 +1,50 @@
+<html>
+   <head>
+      <title>Ex-7-4: Animation</title>
+
+    </head>
+      <script 
+        src="https://code.jquery.com/jquery-4.0.0.min.js" 
+        integrity="sha256-OaVG6prZf4v69dPg6PhVattBXkcOWQB62pdZ3ORyrao=" 
+        crossorigin="anonymous">
+      </script>
+
+    <style>
+           img {
+               position: relative;
+               width: 200px; 
+               height: 200px; 
+           }
+      </style>
+
+      <script>
+          
+            $(document).ready(function() {
+              $("#button").click(function(){
+                  $("img").animate({left: '200px'});
+            });
+            });
+            $(document).ready(function() {
+              $("#buttonGoBack").click(function(){
+                  $("img").animate({right: '200px'});
+            });
+          });
+
+      </script>
+
+	
+   <body>
+    <h1> Adventures of Tintin </h1>
+       <button id="button">Go</button>
+       <button id="buttonGoBack">Go Back</button>
+       
+       <div>
+           <img src="img/tintin-milou.jpg"> <br>
+           <img src="img/captain-haddock_v2.jpg"> <br>
+           <img src="img/prof_calcu.jpg"> <br>
+           <img src="img/Thomson_&_Thompson.png"> <br>
+       </div>
+       
+
+   </body>
+</html>
