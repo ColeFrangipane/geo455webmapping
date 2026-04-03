@@ -1,0 +1,101 @@
+<!DOCTYPE html> 
+
+<html lang="en"> 
+
+<head> 
+   <meta charset="utf-8" /> 
+   <meta name="viewport" content="width=device-width, initial-scale=1" /> 
+   <title>GEO 455: Lab 7</title> 
+
+   <!-- Bootstrap 5 --> 
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"> 
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> 
+
+   <!-- Leaflet CSS --> 
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/> 
+   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script> 
+
+   <!-- Easy Button --> 
+   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
+   <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+   
+   <!-- MiniMap --> 
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-minimap@3.3.1/dist/Control.MiniMap.min.css"> 
+   <script src="https://cdn.jsdelivr.net/npm/leaflet-minimap@3.3.1/dist/Control.MiniMap.min.js"></script>    
+
+   <link rel="stylesheet" href="geo455_lab7.css"> 
+   
+   <!-- Markers -->
+   <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+   <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-search/3.0.9/leaflet-search.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   
+   <!-- Search box -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-search/3.0.9/leaflet-search.min.css" integrity="sha512-1TnOnmQ91QV8X1/dj6UMPhRM35nAnBanyvXPFU7uqV3xg+++cGxIBR6Bh5D7F8wVrwNm8eAfBWNYX/4yce4CiQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-search/3.0.9/leaflet-search.min.js" integrity="sha512-erNK0f3PSiL/SdS247MoOAK95iJCmfueXT4WG5eyRBR1eOgcE0bI5y2fSEVTQfAS53pTqL/VIQpJXnG99U1n+A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   
+   <!-- Heat map data -->
+   <script src="js/leaflet-heat.js"></script>
+   
+   <!-- Mountain peaks map data -->
+   <script src="js/mtn_peaks.js"></script>
+   
+   
+   
+</head> 
+
+<body class="bg-light">
+
+<!-- Top bar --> 
+   <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom sticky-top">
+    <div class="container-fluid">
+      <span class="navbar-brand fw-semibold">Lab 7: Mapping Expeditions and Fatalities in the Himalayas (1950-2003)  </span>
+      <span class="fw-semibold">GEO 455: Webmapping</span>
+    </div>
+  </nav>
+
+<!-- Page layout --> 
+   <div class="container-fluid"> 
+      <div class="row g-3 py-3"> 
+
+<!-- Map column --> 
+   <div class="col-lg-9"> 
+      <div class="card shadow-sm"> 
+         <div class="card-body p-0"> 
+            <div id="map" aria-label="Interactive map"  
+              class="leaflet-container leaflet-touch leaflet-fade-anim leaflet-grab leaflet-touch-drag leaflet-touch-zoom" tabindex="0" style="position: relative;"> 
+            </div> 
+         </div> 
+      </div> 
+   </div> 
+
+<!-- Info panel column --> 
+   <div class="col-lg-3"> 
+      <div class="card shadow-sm"> 
+         <div class="card-body">  
+            <h5 class="card-title mb-3">Map Layers and Controls</h5>
+
+   <p><strong>Location of Himalayan Peaks:</strong> Peak markers show where each mountain is located.</p>
+   <p><strong>Search and Navigation:</strong> Use peak-name search, the mini map, scale bar, and full-extent button to explore efficiently.</p>
+   <div id="top-peaks-buttons" class="d-grid gap-2 mb-3"></div>
+   <p><strong>Proportional Circles showing number of expeditions:</strong> Circle size represents the number of expeditions for each peak.</p>
+   <!-- Proportional circle class legend will be injected by map_lab7.js -->
+   <div id="prop-circle-legend" class="mt-2"></div>
+   <p><strong>Death Density Heat Map:</strong> Heat intensity is weighted by total number of deaths 
+      occured on a peak, so brighter areas indicate peaks with higher death totals.</p> 
+   <hr> 
+               </div> 
+            </div> 
+         </div> 
+      </div> 
+   </div> 
+ <!-- Your map code  -->
+  <script src="geo455_lab7.js"></script>
+     <div id="footer">
+  Cole Frangipane | <small><a href="../index.html">Back to main page</a></small> | Data: OpenStreetView
+</div>
+
+</body>
+  
+</html>
