@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Ex- 3: USGS OGC API - Latest Streamflow in Wisconsin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Leaflet JavaScript and CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        #map {
+            height: 100vh;
+            width: 100%;
+        }
+
+        .title-box {
+            position: absolute;
+            top: 10px;
+            left: 50px;
+            z-index: 1000;
+            background: white;
+            padding: 10px 12px;
+            border: 1px solid #999;
+            border-radius: 6px;
+            max-width: 280px;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <div class="title-box">
+        <strong>Latest streamflow observations in the Central U.S. - USGS Water Data API</strong><br>
+        
+    </div>
+
+    <div id="map"></div>
+
+    <script>
+        // STEP 1: Create the Leaflet map
+        var map = L.map("map").setView([44.5, -89.7],4);
+
+        // STEP 2: Add the basemap
+        L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            attribution: "&copy; OpenStreetMap contributors"
+        }).addTo(map);
+
+        // STEP 3: Define the study area using a bounding box
+        // Format: west, south, east, north
+        var bbox = "-100,1,-86.2,47.3";
+
+        // STEP 4: Define the parameter to request
+        // parameter_code 00060 = streamflow / discharge
+        var usgsURL =
+            `https://api.waterdata.usgs.gov/ogcapi/v0/collections/latest-continuous/items?f=json&bbox=${bbox}&parameter_code=00060&limit=500`;
+
+        // STEP 5: Fetch the API data
+        fetch(usgsURL)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log("USGS OGC response:", data);
+
+                // STEP 6: Make sure the API returned features
+                if (!data.features || data.features.length === 0) {
+                    throw new Error("No features returned.");
+                }
+
+                // STEP 7: Add the returned data directly as GeoJSON
+                L.geoJSON(data, {
+                    // STEP 8: Draw each point as a circle marker
+                    pointToLayer: function(feature, latlng) {
+                        return L.circleMarker(latlng, {
+                            radius: 6,
+                            fillColor: "steelblue",
+                            color: "#1f3b5c",
+                            weight: 1,
+                            opacity: 1,
+                            fillOpacity: 0.8
+                        });
+                    },
+
+                    // STEP 9: Build popup content from feature properties
+                    onEachFeature: function(feature, layer) {
+                        const props = feature.properties;
+
+                        const popupText = `
+                            <strong>${props.monitoring_location_id}</strong><br>
+                            Streamflow: ${props.value} ${props.unit_of_measure}<br>
+                            Parameter code: ${props.parameter_code}<br>
+                            Time: ${props.time}<br>
+                            Approval status: ${props.approval_status ?? "N/A"}
+                        `;
+
+                        layer.bindPopup(popupText);
+                    }
+                }).addTo(map);
+            })
+            .catch(error => {
+                console.error("Full fetch error:", error);
+                alert("Could not load USGS OGC API data. Open the browser console for details.");
+            });
+    </script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Exercise 2 - Map One Location</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Leaflet JavaScript and CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <style>
+        body { margin: 0; font-family: Arial, sans-serif; }
+        #map { height: 100vh; width: 100%; }
+
+        /* small label box placed on top of the map */
+        .info-box {
+            position: absolute;
+            top: 10px;
+            left: 50px;
+            z-index: 1000;
+            background: white;
+            padding: 10px;
+            border: 1px solid #999;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="info-box">
+        <strong>Ex-1: Current weather for La Crosse - Open-Meteo Weather API</strong>
+    </div>
+
+    <div id="map"></div>
+
+    <script>
+        // STEP 1: Choose a city name
+        var cityName = "Sturgeon Bay";
+
+        // STEP 2: Create the map
+        var map = L.map("map").setView([44.9014, -87.23], 10);
+
+        // STEP 3: Add a basemap
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            attribution: "&copy; OpenStreetMap contributors"
+        }).addTo(map);
+
+        // STEP 4: Build the geocoding API URL
+        // This API takes a city name and returns matching locations
+        var geocodeURL = `https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(cityName)}&count=1&language=en&format=json`;
+
+        // STEP 5: Request the geocoding data
+        fetch(geocodeURL)
+            .then(response => response.json())
+            .then(geoData => {
+
+                // If the API returns no results, stop and show an error
+                if (!geoData.results || geoData.results.length === 0) {
+                    throw new Error("City not found");
+                }
+
+                // STEP 6: Read the first returned place
+                var place = geoData.results[0];
+
+                // STEP 7: Extract latitude and longitude
+                var lat = place.latitude;
+                var lon = place.longitude;
+
+                // STEP 8: Build the weather API URL using the returned coordinates
+                var weatherURL = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,wind_speed_10m,precipitation&timezone=auto`;
+
+                // STEP 9: Request the weather data
+                return fetch(weatherURL)
+                    .then(response => response.json())
+                    .then(weatherData => {
+
+                        // Move the map to the correct location
+                        map.setView([lat, lon], 10);
+
+                        // STEP 10: Build popup text from the returned weather data
+                        var popupText = `
+                            <strong>${place.name}, ${place.country}</strong><br>
+                            Temperature: ${weatherData.current.temperature_2m} °C<br>
+                            Wind speed: ${weatherData.current.wind_speed_10m} km/h<br>
+                            Precipitation: ${weatherData.current.precipitation} mm
+                        `;
+
+                        // STEP 11: Add a marker and popup to the map
+                        L.marker([lat, lon])
+                            .addTo(map)
+                            .bindPopup(popupText)
+                            .openPopup();
+                    });
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("Could not load city weather data.");
+            });
+    </script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Ex 2 - Air Quality Map</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Leaflet JavaScript and CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        #map {
+            height: 100vh;
+            width: 100%;
+        }
+
+        .title-box {
+            position: absolute;
+            top: 10px;
+            left: 50px;
+            z-index: 1000;
+            background: white;
+            padding: 10px 12px;
+            border: 1px solid #999;
+            border-radius: 6px;
+            max-width: 260px;
+            line-height: 1.4;
+        }
+
+        .legend {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: white;
+            padding: 10px 12px;
+            border: 1px solid #999;
+            border-radius: 6px;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+
+        .legend i {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin-right: 8px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="title-box">
+        <strong>Exercise 2: Current air quality of top 10 most populous cities in the world and Sturgeon Bay, WI
+            - Open-Meteo Air Quality API</strong><br>
+        
+    </div>
+
+    <div id="map"></div>
+
+    <!-- Legend explaining AQI colors -->
+    <div class="legend">
+        <strong>AQI Severity</strong><br>
+        <div><i style="background: green;"></i>Good (0–50)</div>
+        <div><i style="background: yellow;"></i>Moderate (51–100)</div>
+        <div><i style="background: orange;"></i>Unhealthy for Sensitive Groups (101–150)</div>
+        <div><i style="background: red;"></i>Unhealthy (151–200)</div>
+        <div><i style="background: purple;"></i>Very Unhealthy (201–300)</div>
+        <div><i style="background: maroon;"></i>Hazardous (301+)</div>
+    </div>
+
+    <script>
+        // STEP 1: Define a list of cities
+        var cities = [
+            { name: "Jakarta", country: "Indonesia", population: "41.9 million", lat: -6.2088, lon: 106.8456 },
+            { name: "Dhaka", country: "Bangladesh", population: "6.6 million", lat: 23.8103, lon: 90.4125 },
+            { name: "Tokyo", country: "Japan", population: "33.4 million", lat: 35.6762, lon: 139.6503 },
+            { name: "New Delhi", country: "India", population: "30.2 million", lat: 28.6139, lon: 77.2090 },
+            { name: "Shanghai", country: "China", population: "29.6 million", lat: 31.2304, lon: 121.4737 },
+            { name: "Guangzhou", country: "China", population: "27.6 million", lat: 23.1291, lon: 113.2644 },
+            { name: "Al-Qahirah (Cairo)", country: "Egypt", population: "25.6 million", lat: 30.0444, lon: 31.2357 },
+            { name: "Manila", country: "Philippines", population: "24.7 million", lat: 14.5995, lon: 120.9842 },
+            { name: "Kolkata", country: "India", population: "22.5 million", lat: 22.5726, lon: 88.3639 },
+            { name: "Seoul", country: "South Korea", population: "22.5 million", lat: 37.5665, lon: 126.9780 },
+            { name: "Sturgeon Bay", country: "United States of America", population: "9,600", lat: 44.8342, lon: -87.377 }
+        ];
+
+        // STEP 2: Build lists of latitude and longitude values
+        var latList = [];
+        var lonList = [];
+
+        for (var i = 0; i < cities.length; i++) {
+            latList.push(cities[i].lat);
+            lonList.push(cities[i].lon);
+        }
+
+        // Convert the arrays into comma-separated strings for the API request
+        latList = latList.join(",");
+        lonList = lonList.join(",");
+
+        // STEP 3: Build the API URL
+        var apiURL = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${latList}&longitude=${lonList}&current=us_aqi,pm2_5,pm10,nitrogen_dioxide,ozone&timezone=auto`;
+
+        // STEP 4: Create the Leaflet map
+        var map = L.map("map").setView([8, 28], 2);
+
+        // STEP 5: Add the basemap
+        L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            attribution: "&copy; OpenStreetMap contributors"
+        }).addTo(map);
+
+        // STEP 6: Helper function to choose marker color based on AQI
+        function getAQIColor(aqi) {
+            if (aqi <= 50) return "green";
+            if (aqi <= 100) return "yellow";
+            if (aqi <= 150) return "orange";
+            if (aqi <= 200) return "red";
+            if (aqi <= 300) return "purple";
+            return "maroon";
+        }
+
+        // STEP 7: Helper function to choose AQI label
+        function getAQILabel(aqi) {
+            if (aqi <= 50) return "Good";
+            if (aqi <= 100) return "Moderate";
+            if (aqi <= 150) return "Unhealthy for Sensitive Groups";
+            if (aqi <= 200) return "Unhealthy";
+            if (aqi <= 300) return "Very Unhealthy";
+            return "Hazardous";
+        }
+
+        // STEP 8: Fetch the air quality data
+        fetch(apiURL)
+            .then(response => response.json())
+            .then(data => {
+                console.log("Full API response:", data); // Log the full response to understand its structure.
+                                                        //  Without logging, you can't easily see what the response looks like in the browser's developer console. 
+                                                        //  This helps you verify:
+                                                                // If the API call succeeded and returned the expected data.
+                                                                // The exact structure (e.g., is data an array? What properties does each item have?).
+                                                                // Any errors or unexpected formats (e.g., if coordinates are missing or the API returns an error object).
+
+
+
+                // STEP 9: Loop through the returned records
+                data.forEach((locationData, index) => {
+                    var city = cities[index];
+
+                    // STEP 10: Extract the returned air quality values
+                    var aqi = locationData.current.us_aqi;
+                    var pm25 = locationData.current.pm2_5;
+                    var pm10 = locationData.current.pm10;
+                    var no2 = locationData.current.nitrogen_dioxide;
+                    var ozone = locationData.current.ozone;
+
+                    // STEP 11: Create a circle marker and style it by AQI severity
+                    var marker = L.circleMarker([city.lat, city.lon], {
+                        radius: 10,
+                        fillColor: getAQIColor(aqi),
+                        color: "#222",
+                        weight: 1,
+                        opacity: 1,
+                        fillOpacity: 0.85
+                    }).addTo(map);
+
+                    // STEP 12: Build popup content
+                    marker.bindPopup(`
+                        <strong>${city.name}, ${city.country}</strong><br>
+                        Population: ${city.population}<br>
+                        AQI: ${aqi} (${getAQILabel(aqi)})<br>
+                        PM2.5: ${pm25} µg/m³<br>
+                        PM10: ${pm10} µg/m³<br>
+                        NO₂: ${no2} µg/m³<br>
+                        Ozone: ${ozone} µg/m³
+                    `);
+                });
+            })
+            .catch(error => {
+                console.error("Error loading air quality data:", error);
+                alert("Could not load air quality data.");
+            });
+    </script>
+</body>
+</html>
