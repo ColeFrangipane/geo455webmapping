@@ -1,8 +1,11 @@
-// ─── Basemaps ──────────────────────────────────────────────────────────────
+// ─── Basemaps ───
 
 var esriOcean = L.tileLayer(
   'https://server.arcgisonline.com/ArcGIS/rest/services/Ocean/World_Ocean_Base/MapServer/tile/{z}/{y}/{x}',
-  { attribution: 'Tiles &copy; Esri &mdash; Sources: GEBCO, NOAA, CHS, OSU, UNH, CSUMB, National Geographic, DeLorme, NAVTEQ' }
+  { 
+    attribution: 'Tiles &copy; Esri &mdash; Sources: GEBCO, NOAA, CHS, OSU, UNH, CSUMB, National Geographic, DeLorme, NAVTEQ',
+    maxZoom: 13
+  }
 );
 
 var esriTopo = L.tileLayer(
@@ -10,7 +13,7 @@ var esriTopo = L.tileLayer(
   { attribution: 'Tiles &copy; Esri' }
 );
 
-// ─── Map Init ───────────────────────────────────────────────────────────────
+// ─── Map Init ───
 
 var mymap = L.map('map', {
   center: [45.1, -87.113785234],
@@ -18,7 +21,7 @@ var mymap = L.map('map', {
   layers: [esriTopo]
 });
 
-// ─── Easy Button (Home) ─────────────────────────────────────────────────────
+// ─── Easy Button (Home) ───
 
 var homeCenter = mymap.getCenter();
 var homeZoom = mymap.getZoom();
@@ -27,11 +30,11 @@ L.easyButton('<img src="images/globe_icon.png" height="60%"/>', function () {
     mymap.setView(homeCenter, homeZoom);
 }, "Home").addTo(mymap);
 
-// ─── Scale Bar ──────────────────────────────────────────────────────────────
+// ─── Scale Bar ───
 
 L.control.scale({ position: 'bottomright' }).addTo(mymap);
 
-// ─── MiniMap ────────────────────────────────────────────────────────────────
+// ─── MiniMap ───
 
 var miniLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   minZoom: 0,
@@ -45,7 +48,7 @@ new L.Control.MiniMap(miniLayer, {
   position: 'bottomleft'
 }).addTo(mymap);
 
-// ─── Popup Builder ──────────────────────────────────────────────────────────
+// ─── Popup Builder ───
 
 function buildPopup(p) {
   var deaths      = (p.LIVESLOST !== null && p.LIVESLOST !== undefined) ? p.LIVESLOST : 'Unknown';
@@ -54,7 +57,7 @@ function buildPopup(p) {
   var crashDate   = (p.CASUALTYDA && p.CASUALTYDA.trim() !== '') ? p.CASUALTYDA : 'Unknown';
   var vesselType  = (p.VESSELTYPE && p.VESSELTYPE.trim() !== '') ? p.VESSELTYPE : 'Unknown';
   var casualtyType = (p.CASUALTYTY && p.CASUALTYTY.trim() !== '') ? p.CASUALTYTY : 'Unknown';
-  var length      = p.LENGTH ? p.LENGTH + ' ft' : 'Unknown';
+  var length = p.LENGTH ? Math.round(p.LENGTH) + ' ft' : 'Unknown';
   var depth       = p.WATERDEPTH ? p.WATERDEPTH + ' ft' : 'Unknown';
   var deathColor  = (deaths > 0) ? '#c0392b' : '#27ae60';
 
@@ -71,7 +74,7 @@ function buildPopup(p) {
     '</div>';
 }
 
-// ─── Casualty Type Colors ────────────────────────────────────────────────────
+// ─── Casualty Type Colors ────
 // Maps casualty keywords to colors
 
 var casualtyColors = {
@@ -102,7 +105,7 @@ function getCasualtyLabel(casualtyType) {
   return t.charAt(0).toUpperCase() + t.slice(1);
 }
 
-// ─── Layer 1: Ship Icon Markers ──────────────────────────────────────────────
+// ─── Layer 1: Ship Icon Markers ───
 
 var shipIcon = L.divIcon({
   className: 'ship-marker-icon',
@@ -121,40 +124,34 @@ var shipMarkers = new L.GeoJSON(ship_wrecks, {
   }
 });
 
-// ─── Layer 2: Proportional Circles (by vessel length) ───────────────────────
+// ─── Layer 2: Proportional Circles (by vessel length) ───
 
-function getPropRadius(length) {
-  if (!length || length <= 0) return 5;
-  return Math.sqrt(length) * 1.5;
+function getPropSize(length) {
+  if (!length || length <= 0) return 16;
+  if (length < 100) return 16;       // Small
+  if (length < 200) return 26;       // Medium
+  return 38;                          // Large
 }
 
 var propCircles = new L.GeoJSON(ship_wrecks, {
   pointToLayer: function (feature, latlng) {
-    var len = feature.properties.LENGTH || 0;
-    return L.circleMarker(latlng, {
-      radius: getPropRadius(len),
-      fillColor: '#1e5aa0',
-      color: '#0d2f5e',
-      weight: 1.5,
-      fillOpacity: 0.45
+    var size = getPropSize(feature.properties.LENGTH);
+    return L.marker(latlng, {
+      icon: L.divIcon({
+        className: '',
+        html: '<div style="font-size:' + size + 'px; line-height:1; filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.5));">🚢</div>',
+        iconSize: [size, size],
+        iconAnchor: [size / 2, size / 2],
+        popupAnchor: [0, -size / 2]
+      })
     });
   },
   onEachFeature: function (feature, layer) {
     layer.bindPopup(buildPopup(feature.properties), { maxWidth: 280 });
-    layer.on({
-      mouseover: function () {
-        this.setStyle({ fillOpacity: 0.85, fillColor: '#e67e22' });
-        this.openPopup();
-      },
-      mouseout: function () {
-        this.setStyle({ fillOpacity: 0.45, fillColor: '#1e5aa0' });
-        this.closePopup();
-      }
-    });
   }
 });
 
-// ─── Layer 3: Cluster Layer ──────────────────────────────────────────────────
+// ─── Layer 3: Cluster Layer ───
 
 var clusterGroup = L.markerClusterGroup({
   showCoverageOnHover: false,
@@ -179,7 +176,7 @@ ship_wrecks.features.forEach(function (feature) {
   clusterGroup.addLayer(marker);
 });
 
-// ─── Layer 4: Casualty Type Layer ────────────────────────────────────────────
+// ─── Layer 4: Casualty Type Layer ───
 
 var casualtyLayer = new L.GeoJSON(ship_wrecks, {
   pointToLayer: function (feature, latlng) {
@@ -223,7 +220,7 @@ var casualtyLayer = new L.GeoJSON(ship_wrecks, {
   }
 });
 
-// ─── Casualty Legend (sidebar) ───────────────────────────────────────────────
+// ─── Casualty Legend (sidebar) ────
 
 var casualtyLegendItems = [
   { label: 'Burned / Fire',       color: '#e74c3c' },
@@ -245,28 +242,26 @@ casualtyLegendItems.forEach(function (item) {
 });
 document.getElementById('casualty-legend').innerHTML = casualtyLegendHtml;
 
-// ─── Proportional Circle Legend (sidebar) ────────────────────────────────────
+// ─── Proportional Circle Legend (sidebar) ────
 
 var legendSizes = [
-  { label: '< 50 ft',    len: 30 },
-  { label: '50–100 ft',  len: 75 },
-  { label: '100–200 ft', len: 150 },
-  { label: '200+ ft',    len: 250 }
+  { label: 'Small  (< 100 ft)',    len: 50  },
+  { label: 'Medium (100–200 ft)',  len: 150 },
+  { label: 'Large  (200+ ft)',     len: 250 }
 ];
 
 var propLegendHtml = '';
 legendSizes.forEach(function (item) {
-  var r = getPropRadius(item.len);
-  var d = r * 2;
+  var size = getPropSize(item.len);
   propLegendHtml +=
     '<div class="legend-box" style="align-items:center;">' +
-    '<span class="prop-swatch" style="width:' + d + 'px; height:' + d + 'px;"></span>' +
+    '<span style="font-size:' + size + 'px; margin-right:8px; line-height:1;">🚢</span>' +
     '<span style="font-size:0.82rem;">' + item.label + '</span>' +
     '</div>';
 });
 document.getElementById('prop-circle-legend').innerHTML = propLegendHtml;
 
-// ─── Search Control ──────────────────────────────────────────────────────────
+// ─── Search Control ───
 
 var searchControl = new L.Control.Search({
   position: 'topright',
@@ -279,9 +274,44 @@ var searchControl = new L.Control.Search({
     mymap.setView(latlng, 14);
   }
 });
+
+// When a result is found, highlight the marker and open its popup
+searchControl.on('search:locationfound', function (e) {
+  // Reset any previously highlighted marker
+  if (window._lastSearchMarker) {
+    window._lastSearchMarker.setIcon(shipIcon);
+  }
+
+  var marker = e.layer;
+
+  // Highlighted icon
+  var highlightIcon = L.divIcon({
+    className: 'ship-marker-icon',
+    html: '<div style="font-size:32px; line-height:1;">⚓</div>',
+    iconSize: [34, 34],
+    iconAnchor: [17, 17],
+    popupAnchor: [0, -18]
+  });
+
+  // Apply highlight and open popup
+  marker.setIcon(highlightIcon);
+  marker.openPopup();
+
+  // Store reference so we can reset it on next search
+  window._lastSearchMarker = marker;
+});
+
 mymap.addControl(searchControl);
 
-// ─── Layer Control ───────────────────────────────────────────────────────────
+// Reset highlighted marker when clicking elsewhere on the map
+mymap.on('click', function () {
+  if (window._lastSearchMarker) {
+    window._lastSearchMarker.setIcon(shipIcon);
+    window._lastSearchMarker = null;
+  }
+});
+
+// ─── Layer Control ───
 
 var baseLayers = {
   '🗺️ ESRI Topo': esriTopo, 
@@ -290,7 +320,7 @@ var baseLayers = {
 
 var overlays = {
   '⚓ Ship Markers': shipMarkers,
-  '🔵 Proportional Circles (by Length)': propCircles,
+  '🚢 Proportional Ships (by Length)': propCircles,
   '🔢 Cluster Layer': clusterGroup,
   '💥 Wreck Type': casualtyLayer
 };

@@ -1,4 +1,4 @@
-/* ─── Base Layout ─────────────────────────────────────────────────────────── */
+/* ─── Base Layout ─── */
 
 html, body {
   height: 100%;
@@ -7,12 +7,11 @@ html, body {
 }
 
 #map {
-  height: calc(100vh - 70px);
-  min-height: 500px;
+  height: calc(110vh - 80px);
   width: 100%;
 }
 
-/* ─── Footer ──────────────────────────────────────────────────────────────── */
+/* ─── Footer ─── */
 
 #footer {
   text-align: center;
@@ -23,7 +22,7 @@ html, body {
   border-top: 1px solid #dee2e6;
 }
 
-/* ─── Sidebar Legend ──────────────────────────────────────────────────────── */
+/* ─── Sidebar Legend ─── */
 
 .legend-box {
   display: flex;
@@ -51,7 +50,7 @@ html, body {
   margin-bottom: 6px;
 }
 
-/* ─── Proportional Circle Legend Swatches ─────────────────────────────────── */
+/* ─── Proportional Circle Legend Swatches ─── */
 
 .prop-swatch {
   display: inline-block;
@@ -63,7 +62,7 @@ html, body {
   flex-shrink: 0;
 }
 
-/* ─── Popup Styling ───────────────────────────────────────────────────────── */
+/* ─── Popup Styling ─── */
 
 .popup-title {
   font-size: 1rem;
@@ -84,14 +83,14 @@ html, body {
   color: #444;
 }
 
-/* ─── Ship Marker Icon ────────────────────────────────────────────────────── */
+/* ─── Ship Marker Icon ─── */
 
 .ship-marker-icon {
   background: none;
   border: none;
 }
 
-/* ─── Casualty Dot Markers ────────────────────────────────────────────────── */
+/* ─── Casualty Dot Markers ─── */
 
 .casualty-dot {
   border-radius: 50%;
@@ -99,7 +98,7 @@ html, body {
   opacity: 0.85;
 }
 
-/* ─── Layer Control Tweaks ────────────────────────────────────────────────── */
+/* ─── Layer Control Tweaks ─── */
 
 .leaflet-control-layers-list label {
   font-size: 0.88rem;
