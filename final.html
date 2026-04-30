@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Door County Shipwrecks</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Easy Button -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
+  <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+
+  <!-- MiniMap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-minimap@3.3.1/dist/Control.MiniMap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/leaflet-minimap@3.3.1/dist/Control.MiniMap.min.js"></script>
+
+  <!-- Marker Cluster -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css">
+  <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+
+  <!-- Leaflet Search -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-search/3.0.9/leaflet-search.min.css" crossorigin="anonymous"/>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-search/3.0.9/leaflet-search.min.js" crossorigin="anonymous"></script>
+
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="final.css">
+</head>
+
+<body class="bg-light">
+
+  <!-- Top bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top" style="background-color: #1a3a5c;">
+    <div class="container-fluid">
+      <span class="navbar-brand fw-semibold"> Door County Shipwrecks History</span>
+      <span class="text-white fw-semibold" style="font-size:0.9rem;">GEO 455</span>
+    </div>
+  </nav>
+
+  <!-- Page layout -->
+  <div class="container-fluid">
+    <div class="row g-3 py-3">
+
+      <!-- Map column -->
+      <div class="col-lg-9">
+        <div class="card shadow-sm">
+          <div class="card-body p-0">
+            <div id="map" aria-label="Door County Shipwrecks Map"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info panel -->
+      <div class="col-lg-3">
+
+        <!-- About -->
+        <div class="card shadow-sm mb-3">
+          <div class="card-body">
+            <h5 class="card-title mb-2">🗺️ Map Layers & Controls</h5>
+            <p class="mb-1 text-muted" style="font-size:0.9rem;">Explore <strong>220 shipwrecks</strong> recorded in Door County, Wisconsin waters.
+            Learn more about this map
+  <small><a href="AboutTheMap.html">Click here</a></small></p>
+          </div>
+        </div>
+
+        <!-- Layers guide -->
+        <div class="card shadow-sm mb-3">
+          <div class="card-body">
+
+            <div class="legend-title">⚓ Ship Markers</div>
+            <p class="legend-subtitle">Click any anchor icon to see vessel details including name, year built, crash date, and lives lost.</p>
+
+            <div class="legend-title mt-3">🚢 Proportional Ships</div>
+            <p class="legend-subtitle">Ship size is proportional to vessel length in (ft). Hover to highlight, click for full details.</p>
+            <div id="prop-circle-legend" class="mt-1 mb-2"></div>
+
+            <div class="legend-title mt-3">🔢 Cluster Layer</div>
+            <p class="legend-subtitle">Zoom in to expand clusters. The number shows how many wrecks are grouped.</p>
+
+            <div class="legend-title mt-3">💥 Wreck Type Layer</div>
+            <p class="legend-subtitle">Color-coded markers showing how each vessel was lost.</p>
+            <div id="casualty-legend"></div>
+
+            <hr>
+            <div class="legend-title">🌊 Basemaps</div>
+            <p class="legend-subtitle">Switch between ESRI Topo and ESRI Bathymetirc in the layer control.</p>
+
+            <hr>
+            <div class="legend-title">🔍 Search & Navigation</div>
+            <p class="legend-subtitle mb-0">Search by vessel name. Use the home button to reset the view.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div id="footer">
+    Door County Shipwrecks &nbsp;|&nbsp; Data: State Cartographers Office &nbsp;|&nbsp; Basemap: ESRI
+  </div>
+
+  <!-- Shipwreck data (must load before map JS) -->
+  <script src="shipwrck_edit.js"></script>
+
+  <!-- Custom JS -->
+  <script src="final.js"></script>
+
+</body>
+</html>
