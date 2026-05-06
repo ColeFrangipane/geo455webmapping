@@ -15,129 +15,123 @@
       padding: 0;
       background-color: #f0f4f8;
       font-family: 'Segoe UI', sans-serif;
+      color: #333;
     }
 
-    /* Navbar */
     .navbar {
       background-color: #1a3a5c !important;
     }
 
-    /* Hero banner */
     .hero {
       background: linear-gradient(135deg, #1a3a5c 0%, #0d2f5e 60%, #0a1f3d 100%);
       color: #fff;
-      padding: 60px 20px 50px;
+      padding: 55px 20px 45px;
       text-align: center;
-      position: relative;
-      overflow: hidden;
     }
     .hero h1 {
-      font-size: 2.6rem;
+      font-size: 2.4rem;
       font-weight: 700;
-      letter-spacing: 1px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
     .hero p {
-      font-size: 1.1rem;
+      font-size: 1rem;
       color: #a8c8e8;
-      max-width: 680px;
+      max-width: 640px;
       margin: 0 auto;
     }
-    .hero-anchor {
-      font-size: 3rem;
-      display: block;
-      margin-bottom: 16px;
-      opacity: 0.85;
+
+    .content-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 36px 20px 20px;
     }
 
-    /* Section cards */
-    .section-card {
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-      padding: 32px 36px;
-      margin-bottom: 28px;
-    }
-    .section-card h2 {
-      font-size: 1.4rem;
+    h4 {
+      font-size: 1.2rem;
       font-weight: 700;
       color: #1a3a5c;
-      border-left: 4px solid #1a3a5c;
-      padding-left: 12px;
-      margin-bottom: 16px;
+      margin-top: 32px;
+      margin-bottom: 10px;
+      border-bottom: 2px solid #d0dce8;
+      padding-bottom: 6px;
     }
-    .section-card p {
+
+    h5 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1a3a5c;
+      margin-top: 24px;
+      margin-bottom: 8px;
+    }
+
+    p {
+      line-height: 1.78;
       color: #444;
-      line-height: 1.75;
       margin-bottom: 12px;
     }
 
-    /* Layer description cards */
-    .layer-card {
+    ul {
+      line-height: 2;
+      color: #444;
+      padding-left: 1.4rem;
+    }
+
+    ul li {
+      margin-bottom: 4px;
+    }
+
+    /* Data table */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin: 14px 0 20px;
+    }
+    .data-table th {
+      background-color: #1a3a5c;
+      color: #fff;
+      padding: 9px 12px;
+      text-align: left;
+      font-weight: 600;
+    }
+    .data-table td {
+      padding: 8px 12px;
+      border-bottom: 1px solid #dde4ec;
+      vertical-align: top;
+    }
+    .data-table tr:nth-child(even) td {
+      background-color: #f4f8fb;
+    }
+
+    /* Diagram placeholder box */
+    .diagram-box {
+      background: #fff;
+      border: 1px solid #d0dce8;
+      border-radius: 8px;
+      padding: 24px;
+      text-align: center;
+      margin: 16px 0;
+    }
+
+    /* Limitations grid */
+    .limitations-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 12px;
+    }
+    .limit-card {
+      background: #fff;
       border-left: 4px solid;
       border-radius: 6px;
-      padding: 14px 18px;
-      margin-bottom: 14px;
-      background: #f8fafc;
-    }
-    .layer-card h5 {
-      font-weight: 700;
-      margin-bottom: 4px;
-      font-size: 1rem;
-    }
-    .layer-card p {
-      font-size: 0.9rem;
-      color: #555;
-      margin: 0;
-    }
-
-    /* Stat boxes */
-    .stat-box {
-      background: linear-gradient(135deg, #1a3a5c, #2a5a8c);
-      color: #fff;
-      border-radius: 10px;
-      padding: 22px 16px;
-      text-align: center;
-      margin-bottom: 16px;
-    }
-    .stat-box .stat-number {
-      font-size: 2.2rem;
-      font-weight: 700;
-      line-height: 1;
-      margin-bottom: 6px;
-    }
-    .stat-box .stat-label {
-      font-size: 0.85rem;
-      color: #a8c8e8;
-    }
-
-    /* Casualty color swatches */
-    .swatch {
-      display: inline-block;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      margin-right: 8px;
-      vertical-align: middle;
-      flex-shrink: 0;
-    }
-    .swatch-row {
-      display: flex;
-      align-items: center;
-      margin-bottom: 7px;
+      padding: 14px 16px;
       font-size: 0.9rem;
       color: #444;
     }
-
-    /* Footer */
-    #footer {
-      text-align: center;
-      padding: 14px;
-      font-size: 0.82rem;
-      color: #888;
-      background: #e8edf2;
-      border-top: 1px solid #d0d8e0;
-      margin-top: 10px;
+    .limit-card strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #1a3a5c;
     }
 
     /* Back button */
@@ -146,10 +140,11 @@
       color: #fff;
       border: none;
       border-radius: 6px;
-      padding: 10px 24px;
+      padding: 9px 22px;
       font-weight: 600;
       text-decoration: none;
       display: inline-block;
+      font-size: 0.9rem;
       transition: background 0.2s;
     }
     .btn-back:hover {
@@ -157,35 +152,18 @@
       color: #fff;
     }
 
-    /* Timeline */
-    .timeline-item {
-      display: flex;
-      gap: 16px;
-      margin-bottom: 18px;
-      align-items: flex-start;
+    #footer {
+      text-align: center;
+      padding: 14px;
+      font-size: 0.82rem;
+      color: #888;
+      background: #e8edf2;
+      border-top: 1px solid #d0d8e0;
+      margin-top: 30px;
     }
-    .timeline-dot {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: #1a3a5c;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    .timeline-text h6 {
-      font-weight: 700;
-      color: #1a3a5c;
-      margin-bottom: 3px;
-    }
-    .timeline-text p {
-      font-size: 0.88rem;
-      color: #555;
-      margin: 0;
+
+    @media (max-width: 600px) {
+      .limitations-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -195,67 +173,130 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
     <div class="container-fluid">
-      <span class="navbar-brand fw-semibold">Door County Shipwrecks</span>
+      <span class="navbar-brand fw-semibold">⚓ Door County Shipwrecks</span>
       <a href="final.html" class="btn btn-sm btn-outline-light">← Back to Map</a>
     </div>
   </nav>
 
   <!-- Hero -->
   <div class="hero">
-    <span class="hero-anchor"></span>
-    <h1>About the Map</h1>
-    <p>Data, history, and tools behind the Door County Shipwrecks Webmap </p>
+    <h1>⚓ About the Map</h1>
+    <p>Project background, data sources, and methodology behind the Door County Shipwrecks interactive webmap.</p>
   </div>
 
+  <div class="content-wrap">
 
-    <!-- About the project -->
-    <div class="section-card">
-      <h2>Introduction, Motivation & Objective</h2>
+    <!-- ── What This Map Is ── -->
+    <h4>What This Map Is</h4>
+    <p>
+      This interactive web map compiles and visualizes <strong>220 recorded shipwrecks</strong> This interactive web map compiles are visualizes all 220 shipwrecks in Door County, WI, from the years 1850-1951. Each wreck is plotted at it's respective location and includes information about the specific wreck; vessel name, type, year built, cause of wreck, length of ship, and lives lost. There are many different types of audiences that will benefit from this webmap, including maratime and Great Lakes historians, as well as tourists, and students. No prior knowledge is needed while using this web map.
 
-      <p><strong>What are we mapping?</strong></p>
-      <p>
-        This map documents the 220 shipwrecks that have been recorded in Door County waters. Each wreck is plotted at it's respective location and includes information about the specific wreck; vessel name, type, year built, cause of wreck, length of ship, and lives lost. 
-      </p>
+    <!-- ── How to Use the Map ── -->
+    <h4>How to Use the Map</h4>
+    <ul>
+      <li><strong>⚓ Ship Markers</strong> — Anchor icons mark each wreck location. Click any anchor to open a popup showing vessel name, type, year built, build location, crash date, cause of loss, ship length, water depth, and lives lost.</li>
+      <li><strong>🚢 Proportional Ships</strong> — Ship icons scaled by vessel length in feet. Three size classes: Small (&lt;100 ft), Medium (100–200 ft), and Large (200+ ft). Larger icons represent longer vessels. Click for full details.</li>
+      <li><strong>🔢 Cluster Layer</strong> — When zoomed out, nearby wrecks are grouped into numbered clusters. The number shows how many wrecks are contained within it. Zoom in to split clusters apart and reveal individual wreck locations. Clusters are color-coded: blue (small), orange (medium), red (large concentrations).</li>
+      <li><strong>💥 Wreck Type Layer</strong> — Color-coded circle markers showing the cause of each vessel's loss: 🔴 Burned/Fire, 🔵 Foundered/Sunk, 🟠 Stranded/Grounded, 🟣 Abandoned, 🟢 Wrecked, 🟤 Collision, ⚫ Other/Unknown. Click any marker for casualty-specific details.</li>
+      <li><strong>🌊 Basemap Toggle</strong> — Switch between ESRI Ocean (bathymetric depth shading, default) and ESRI Topo (terrain and place names) using the layer control panel in the top-right corner of the map.</li>
+      <li><strong>🔍 Vessel Search</strong> — Type a vessel name (e.g. "Adriatic" or "Tempest") in the search bar in the top-right corner to zoom directly to that wreck. The anchor icon will glow yellow and the popup will open automatically.</li>
+      <li><strong>⌂ Home Button</strong> — Resets the map back to the default Door County view after zooming or panning.</li>
+      <li><strong>🗺️ Mini Map</strong> — A small overview map in the bottom-left corner providing regional geographic context. Click the arrow to collapse or expand it.</li>
+      <li><strong>📏 Scale Bar</strong> — Located in the bottom-right corner, showing real-world distance at the current zoom level in both metric and imperial units.</li>
+    </ul>
 
-      <p><strong>Who is the intended audience?</strong></p>
-      <p>
-        This map is really intended for anyone with an interest in maratime hisotry, the Great Lakes, shipwrecks, and Door County. No prior knowledge is necessary while looking at this map. 
-      </p>
+    <!-- ── Data Sources ── -->
+    <h4>Data Sources</h4>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Dataset</th>
+          <th>Source</th>
+          <th>Date</th>
+          <th>What it represents</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Shipwrecks (Great Lakes), Wisconsin</td>
+          <td>State Cartographers Office</td>
+          <td>2014</td>
+          <td>Locations and attributes for 220 recorded shipwrecks in Door County waters — vessel name, type, build year, crash date, cause, length, depth, and lives lost</td>
+        </tr>
+        <tr>
+          <td>ESRI Ocean Basemap</td>
+          <td>ESRI</td>
+          <td>Current</td>
+          <td>Bathymetric depth-shaded ocean basemap; deeper blues indicate greater water depth</td>
+        </tr>
+        <tr>
+          <td>ESRI Topo Basemap</td>
+          <td>ESRI</td>
+          <td>Current</td>
+          <td>Topographic reference basemap showing terrain, roads, and place names</td>
+        </tr>
+        <tr>
+          <td>OpenStreetMap Tiles</td>
+          <td>OpenStreetMap contributors</td>
+          <td>Current</td>
+          <td>Used in the minimap overview control only</td>
+        </tr>
+      </tbody>
+    </table>
 
-      <p><strong>Why does this map matter?</strong></p>
-      <p>
-        This map brings to life ships and shipwrecks that occured hundreds of years ago that are often overlooked and forgot about. This map tells it's users a story with the different layers that show patterns of the wrecks and perhaps why these wrecks occured, as well as piecing together any coorelation.  
-      </p>
-       
-        <p><strong>Datasets</strong></p>
-      <p>
-        This map utilizes datasets from various sources. The layer, Shipwrecks (Great lakes), Wisconsin 2014, includes the locations and information about the respective shipwrecks. This layer was utilized from the State Cartographers Office. The two toggleable basemaps, (topo and bathymetric) are both from ESRI. 
-      </p>
-       
-       <p><strong>Methodology</strong></p>
-      <p>
-        The first step that was taken was in ArcGIS. The shipwreck data was reprojected to WGS84, from their it was cleaned up and clipped to just the Door County boundary. Unneeded data from the attribute table was removed ensuring less confusion in the future. 
-      </p>
-       
-       <p><strong>Data Delivery</strong></p>
-      <p>
-        The shipwreck data was delivered to the coding program, Phcode, via a GeoJSON file which was created in ArcGIS.
-      </p>
-       
-       <p><strong>Project Summary</strong></p>
-      <p>
-        A few things that work very well as well as some strengths in this webmap are the toggleable layers and the legends that are very clearcut. It would be very hard to misinterpret what this webmap is delivering. The symbology is very appealing too, it creates for an enjoyable experience. The design also improves the enjoyable experience that users will toggle with. Everything is very symmetric as well as organized. This map also has a couple of limitations. There is some data gaps within the popups. For example, where the ship was built, length, and year are sometimes null or blank. There really isn't anything that can be done about this. The bathymetric layer also has a maximum zoom before it starts throwing out 'No Data' messages. I would like to improve on some data discrepencies as well as finding a different bathymetric <layer class=""></layer>
-      </p>
-       
+    <!-- ── Methods ── -->
+    <h4>Methods</h4>
+    <ul>
+      <li><strong>Reproject:</strong> Shipwreck data was reprojected to WGS84 in ArcGIS Pro to ensure compatibility with Leaflet.js, which requires geographic coordinates.</li>
+      <li><strong>Clip:</strong> The dataset was clipped to the Door County boundary, removing wrecks outside the study area and reducing file size.</li>
+      <li><strong>Clean attribute table:</strong> Unneeded fields were removed from the attribute table. Key fields retained: vessel name, type, construction year, build location, casualty date, casualty type, hull material, propulsion, length, water depth, and lives lost.</li>
+      <li><strong>Field cleanup in JavaScript:</strong> Decimal lengths were rounded using <code>Math.round()</code>. Casualty dates stored in mixed formats (MM/DD/YYYY and year-only) were parsed using a regex year extractor.</li>
+      <li><strong>Export format:</strong> Data exported from ArcGIS as GeoJSON, then wrapped as a JavaScript variable (<code>ship_wrecks</code>) in <code>shipwrck_edit.js</code> for reliable browser delivery without requiring a server fetch call.</li>
+
+    </ul>
+
+    <!-- ── Limitations & Credits ── -->
+    <h4>Limitations &amp; Credits</h4>
+
+    <h5>Limitations</h5>
+    <div class="limitations-grid">
+      <div class="limit-card" style="border-color: #c0392b;">
+        <strong>Data Gaps in Popups</strong>
+        Some vessel records have null or blank values for fields such as build location, ship length, and year built. This reflects incomplete historical recordkeeping and cannot be resolved with the available data.
+      </div>
+      <div class="limit-card" style="border-color: #e67e22;">
+        <strong>Bathymetric Basemap Zoom Limit</strong>
+        The ESRI Ocean basemap has a maximum native zoom level. Zooming beyond that threshold produces "No Data" tiles. The ESRI Topo basemap is available as an alternative for close-up views.
+      </div>
+      
+      <div class="limit-card" style="border-color: #8e44ad;">
+        <strong>No Mobile-Optimized Layout</strong>
+        The sidebar and map layout are designed for desktop viewing. On smaller screens the sidebar compresses and may require scrolling to access all legend and layer controls.
+      </div>
     </div>
-    </div>
 
-   
-   
+    <h5>Credits</h5>
+    <p>
+      Created by <strong>Cole Frangipane</strong> for GEO 455: Web Mapping, University of Wisconsin–La Crosse.
+    </p>
+    <p>
+      Tools used: Leaflet.js, Bootstrap 5, ArcGIS Pro, Phoenix Code
+    </p>
+    <p style="font-size:0.88rem; color:#777;">
+      <em>Claude AI Disclaimer: AI was used in the development of this webmap. Claude was prompted to assist
+      with coding issues across the HTML, CSS, and JavaScript files. All content, data
+      decisions, and design direction were provided by the student.</em>
+    </p>
+    <p style="font-size:0.88rem; color:#777;">
+      Basemap tiles &copy; <a href="https://www.esri.com" target="_blank">Esri</a> &nbsp;·&nbsp;
+      MiniMap tiles &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap contributors</a>.
+    </p>
+
+
   </div>
 
   <div id="footer">
-    Door County Shipwrecks &nbsp;|&nbsp; GEO 455: Webmapping &nbsp;|&nbsp; Data: State Cartographers Office
+    Door County Shipwrecks &nbsp;|&nbsp; GEO 455: Web Mapping &nbsp;|&nbsp; University of Wisconsin–La Crosse &nbsp;|&nbsp; Data: State Cartographers Office
   </div>
 
 </body>
